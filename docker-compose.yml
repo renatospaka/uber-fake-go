@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: uber_like_go_app
+    volumes:
+      - .:/app/
+    ports:
+      - 3270:8080
+    depends_on:
+      - db
+    extra_hosts:
+      - "host.docker.internal:172.17.0.1"
+
+  # db:
+  #   build: .docker/postgres
+  #   container_name: uber_like_go_db
+  #   restart: always
+  #   tty: true
+  #   ports:
+  #     - 3271:5432
+  #   volumes:
+  #     - $HOME/postgres/pgdata-15:/var/lib/postgresql/data
+  #   environment:
+  #     - POSTGRES_DB=uber
+  #     - POSTGRES_USER=uber
+  #     - POSTGRES_PASSWORD=thisislocal-noneedtoworry
+  #   extra_hosts:
+  #     - "host.docker.internal:172.17.0.1"
+
